@@ -50,6 +50,11 @@ PAGE_GROUPS = {
         ("GL Milestones", "tab_gl_milestones"),
         ("GL Music", "tab_gl_music"),
     ],
+    "AI Tools": [
+        ("Music Finder", "tab_music_finder"),
+        ("Trend Tracker", "tab_trend_tracker"),
+        ("Casa Classic", "tab_casa_classic"),
+    ],
 }
 
 # --- CSS ---
@@ -80,10 +85,19 @@ st.markdown("""
         border-color: #C41E3A !important;
     }
 
-    /* Main content */
+    /* Main content - Dark theme */
     .stApp {
-        background-color: #f8f6f3;
+        background-color: #0D0D1A;
+        color: #FFFEF7;
     }
+    .stApp [data-testid="stAppViewContainer"] {
+        background-color: #0D0D1A;
+    }
+    .stApp [data-testid="stHeader"] { background-color: transparent; }
+    .stApp footer { visibility: hidden; }
+    #MainMenu { visibility: hidden; }
+    .stApp p, .stApp span, .stApp label, .stApp li { color: #FFFEF7; }
+    .stApp .stMarkdown { color: #FFFEF7; }
 
     /* Header */
     .main-header {
@@ -108,27 +122,33 @@ st.markdown("""
         font-style: italic;
     }
 
-    /* Feature cards on landing page */
+    /* Feature cards - glass morphism */
     .feature-card {
-        background: white;
-        border: 1px solid #e0d8d0;
-        border-radius: 10px;
+        background: rgba(255,255,255,0.04);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-radius: 12px;
         padding: 20px;
         border-left: 4px solid #C41E3A;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+    }
+    .feature-card:hover {
+        border-color: #D4A017;
+        background: rgba(212,160,23,0.08);
     }
     .feature-card h4 {
-        color: #1A0F0F;
+        color: #FFE082;
         margin: 0 0 8px 0;
         font-size: 15px;
     }
     .feature-card p {
-        color: #555;
+        color: #8A7A5A;
         font-size: 13px;
         margin: 0;
     }
 
     /* General styling */
-    h2, h3 { color: #B8860B !important; }
+    h1, h2, h3 { color: #D4A017 !important; }
     .stButton > button[kind="primary"] {
         background: linear-gradient(135deg, #C41E3A, #8B0000);
         border: none;
@@ -136,14 +156,35 @@ st.markdown("""
     .stButton > button[kind="primary"]:hover {
         background: linear-gradient(135deg, #D4A017, #B8860B);
     }
-    a { color: #C41E3A !important; }
-
-    /* Chat messages */
-    .stChatMessage {
-        background-color: #ffffff !important;
-        border: 1px solid #e0d8d0 !important;
-        border-radius: 8px !important;
+    .stButton > button[kind="secondary"] {
+        background: rgba(255,255,255,0.04) !important;
+        border: 1px solid rgba(255,255,255,0.1) !important;
+        color: #FFFEF7 !important;
     }
+    .stButton > button[kind="secondary"]:hover {
+        background: rgba(212,160,23,0.15) !important;
+        border-color: #D4A017 !important;
+    }
+    a { color: #D4A017 !important; }
+
+    /* Chat messages - dark */
+    .stChatMessage {
+        background-color: rgba(255,255,255,0.04) !important;
+        border: 1px solid rgba(255,255,255,0.08) !important;
+        border-radius: 10px !important;
+    }
+    .stChatInput input {
+        background-color: rgba(255,255,255,0.06) !important;
+        border: 1px solid rgba(255,255,255,0.1) !important;
+        color: #FFFEF7 !important;
+    }
+    .stTextInput input, .stSelectbox select, .stTextArea textarea {
+        background-color: rgba(255,255,255,0.06) !important;
+        border: 1px solid rgba(255,255,255,0.1) !important;
+        color: #FFFEF7 !important;
+    }
+    .stDivider { border-color: rgba(255,255,255,0.08) !important; }
+    .stExpander { border-color: rgba(255,255,255,0.08) !important; }
 </style>
 """, unsafe_allow_html=True)
 
@@ -217,7 +258,7 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("""
     <div style="text-align: center;">
-        <p style="color: #5a4a3a !important; font-size: 10px; margin: 0;">Casa Gianelli v3.0</p>
+        <p style="color: #5a4a3a !important; font-size: 10px; margin: 0;">Casa Gianelli v4.0</p>
         <p style="color: #5a4a3a !important; font-size: 10px; margin: 2px 0 0 0;">Built by Sinton.ia</p>
     </div>
     """, unsafe_allow_html=True)
@@ -238,8 +279,8 @@ if selected is None:
     st.markdown("""
 <div style="max-width: 900px; margin: 0 auto;">
 
-<h2 style="color: #1A0F0F !important; text-align: center; margin-bottom: 8px;">Your <span style="color: #C41E3A;">FAMILY</span> command center.</h2>
-<p style="color: #555; text-align: center; font-size: 15px; margin-bottom: 32px;">Everything in one place. Housing, health, groceries, car, GL's development, entertainment, and more.</p>
+<h2 style="color: #FFE082 !important; text-align: center; margin-bottom: 8px;">Your <span style="color: #C41E3A;">FAMILY</span> command center.</h2>
+<p style="color: #8A7A5A; text-align: center; font-size: 15px; margin-bottom: 32px;">Everything in one place. Housing, health, groceries, car, GL's development, entertainment, AI tools, and more.</p>
 
 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px;">
     <div class="feature-card" style="border-left-color: #C41E3A;">
@@ -265,8 +306,8 @@ if selected is None:
     <p style="color: #ffffff; font-size: 14px;">Select a page from the sidebar.</p>
 </div>
 
-<p style="color: #999; text-align: center; font-size: 12px;">19 pages. Everything works. One family.</p>
-<p style="color: #bbb; text-align: center; font-size: 11px;">Built by Sinton.ia</p>
+<p style="color: #555; text-align: center; font-size: 12px;">22 pages. Everything works. One family.</p>
+<p style="color: #444; text-align: center; font-size: 11px;">Built by Sinton.ia</p>
 
 </div>
 """, unsafe_allow_html=True)
@@ -288,6 +329,7 @@ from tabs import tab_peter_vomit, tab_gladys_bamba, tab_tasks
 from tabs import tab_story_buddy, tab_gl_stories
 from tabs import tab_gl_languages, tab_gl_signs, tab_gl_games
 from tabs import tab_gl_milestones, tab_gl_music
+from tabs import tab_music_finder, tab_trend_tracker, tab_casa_classic
 
 PAGE_MODULES = {
     "tab_casa": tab_casa,
@@ -309,6 +351,9 @@ PAGE_MODULES = {
     "tab_gl_games": tab_gl_games,
     "tab_gl_milestones": tab_gl_milestones,
     "tab_gl_music": tab_gl_music,
+    "tab_music_finder": tab_music_finder,
+    "tab_trend_tracker": tab_trend_tracker,
+    "tab_casa_classic": tab_casa_classic,
 }
 
 module = PAGE_MODULES.get(selected)
