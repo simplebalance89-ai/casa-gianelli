@@ -2,3 +2,9 @@ streamlit>=1.41.0
 pandas
 plotly
 openai
+requests
+mutagen
+librosa
+soundfile
+pydub
+numpy

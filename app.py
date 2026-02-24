@@ -55,6 +55,18 @@ PAGE_GROUPS = {
         ("Trend Tracker", "tab_trend_tracker"),
         ("Casa Classic", "tab_casa_classic"),
     ],
+    "J.A.W. Music AI": [
+        ("J.A.W. Command", "tab_music_jaw"),
+        ("Music Discovery", "tab_music_discovery"),
+        ("AI Mastering", "tab_music_mastering"),
+        ("Stem Separation", "tab_music_stems"),
+        ("AI Generation", "tab_music_generation"),
+        ("Festival Radar", "tab_music_festivals"),
+        ("Set Builder", "tab_music_setbuilder"),
+        ("Mix Archive", "tab_music_archive"),
+        ("Producer Tools", "tab_music_producer"),
+        ("Music Dashboard", "tab_music_dashboard"),
+    ],
 }
 
 # --- CSS ---
@@ -258,7 +270,7 @@ with st.sidebar:
     st.markdown("---")
     st.markdown("""
     <div style="text-align: center;">
-        <p style="color: #5a4a3a !important; font-size: 10px; margin: 0;">Casa Gianelli v4.0</p>
+        <p style="color: #5a4a3a !important; font-size: 10px; margin: 0;">Casa Gianelli v5.0</p>
         <p style="color: #5a4a3a !important; font-size: 10px; margin: 2px 0 0 0;">Built by Sinton.ia</p>
     </div>
     """, unsafe_allow_html=True)
@@ -306,7 +318,7 @@ if selected is None:
     <p style="color: #ffffff; font-size: 14px;">Select a page from the sidebar.</p>
 </div>
 
-<p style="color: #555; text-align: center; font-size: 12px;">22 pages. Everything works. One family.</p>
+<p style="color: #555; text-align: center; font-size: 12px;">32 pages. Everything works. One family.</p>
 <p style="color: #444; text-align: center; font-size: 11px;">Built by Sinton.ia</p>
 
 </div>
@@ -330,6 +342,10 @@ from tabs import tab_story_buddy, tab_gl_stories
 from tabs import tab_gl_languages, tab_gl_signs, tab_gl_games
 from tabs import tab_gl_milestones, tab_gl_music
 from tabs import tab_music_finder, tab_trend_tracker, tab_casa_classic
+from tabs import tab_music_jaw, tab_music_discovery, tab_music_mastering
+from tabs import tab_music_stems, tab_music_generation, tab_music_festivals
+from tabs import tab_music_setbuilder, tab_music_archive, tab_music_producer
+from tabs import tab_music_dashboard
 
 PAGE_MODULES = {
     "tab_casa": tab_casa,
@@ -354,6 +370,16 @@ PAGE_MODULES = {
     "tab_music_finder": tab_music_finder,
     "tab_trend_tracker": tab_trend_tracker,
     "tab_casa_classic": tab_casa_classic,
+    "tab_music_jaw": tab_music_jaw,
+    "tab_music_discovery": tab_music_discovery,
+    "tab_music_mastering": tab_music_mastering,
+    "tab_music_stems": tab_music_stems,
+    "tab_music_generation": tab_music_generation,
+    "tab_music_festivals": tab_music_festivals,
+    "tab_music_setbuilder": tab_music_setbuilder,
+    "tab_music_archive": tab_music_archive,
+    "tab_music_producer": tab_music_producer,
+    "tab_music_dashboard": tab_music_dashboard,
 }
 
 module = PAGE_MODULES.get(selected)
